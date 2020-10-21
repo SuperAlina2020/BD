@@ -5,6 +5,9 @@ import pprint
 connection = sqlite3.connect('test1.db')
 cursor = connection.cursor()
 
+# Удалить строки где full_name = default
+# Увеличить зарплату до 50к где join date < 2020-10-10
+#
 #sql_command = """CREATE TABLE salary(
 #staff_id INTEGER PRIMARY KEY,
 #full_name varchar(20),
@@ -22,10 +25,13 @@ cursor = connection.cursor()
 #cursor.execute("INSERT INTO salary VALUES(9,'Lisa',38000,'2020-10-10')")
 #cursor.execute("INSERT INTO salary VALUES(10,'Danil',73000,'2020-10-10')")
 #cursor.execute("INSERT INTO salary VALUES(11,'Sasha',130000,'2020-10-10')")
+#cursor.execute("INSERT INTO salary VALUES(15,'default',2000,'2020-10-10')")
 
-cursor.execute("SELECT * FROM salary WHERE staff_salary>=80000;")
+cursor.execute("SELECT * FROM salary")
+
+
 ans = cursor.fetchall()
 pprint.pprint(ans)
-
 connection.commit()
 connection.close()
+
